@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/myvenv": true
+    },
+
+    "search.exclude": {
+        "**/myvenv": true
+    },
+
+    "files.watcherExclude": {
+        "**/myvenv/**": true
+    }
+}
