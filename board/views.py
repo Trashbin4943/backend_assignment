@@ -72,3 +72,31 @@ def comment_list(request,pk):
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['DELETE'])
+def delete_comment(request,pk,id):
+    try:
+        post=Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    try:
+        comment=Comment.objects.get(post=post,id=id)
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Comment.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def view_comment(request,pk,id):
+    try:
+        post=Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    try:
+        comment=Comment.objects.get(post=post,id=id)
+        serializer=CommentSerializer(comment)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    except Comment.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+

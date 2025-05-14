@@ -10,5 +10,7 @@ urlpatterns = [
     path('post/update/<int:pk>',blog_update, name='blog_update'),
     path('post/delete/<int:pk>',blog_delete, name='blog_delete'),
     path('post/comment/create/<int:pk>',comment_create, name='comment_create'),
-    path('post/comment/list/<int:pk>',comment_list,name='comment_list')
+    path('post/comment/list/<int:pk>',comment_list,name='comment_list'),
+    path('post/comment/detail/<int:pk>/<int:id>',view_comment,name='view_comment'),
+    path('post/comment/delete/<int:pk>/<int:id>',delete_comment,name='delete_comment')
 ]
